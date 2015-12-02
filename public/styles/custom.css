@@ -1,13 +1,3 @@
-form {
-  position: relative;
-}
-
-.dot {
-  position: relative;
-  top: 40px;
-}
-
-.version-picker {
-  text-align: center;
-  margin: 0 auto;
+li {
+  float: left;
 }

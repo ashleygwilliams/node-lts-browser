@@ -4,14 +4,25 @@ $(requestJSON(src_url, function(data) {
   var results = $('#results');
   var submit_btn = $('#submit_btn');
   var version_list = $('#versions');
+  var major_minor = "";
 
   for(var i=0; i<data.length; i++) {
-    var list_tmpl = '<li>' +
-                    '<a href="#" id="' + data[i].version + '">' +
-                    data[i].version +
-                    '</a>' +
-                    '</li>';
+    var version = data[i].version;
+    var major_minor_new = get_major_minor(version);
+    if (major_minor_new !== major_minor) {
+      major_minor = major_minor_new;
+      version_list.append('<h3>' + major_minor + '</h3>');
+    }    
+    var list_tmpl = ' * ' +
+                    '<a href="#" id="' + version + '">' +
+                    version +
+                    '</a>';
     version_list.append(list_tmpl);
+  }
+
+  function get_major_minor(v_str) {
+    var nums = v_str.split('.');
+    return nums[0] + '.' + nums[1];
   }
 
   $('a').click(function(e){
