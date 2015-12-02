@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+  <head>
+    <title>node LTS browser</title>
+    <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="public/styles/custom.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>node lts browser</h1>
+        <h2 class="subtitle">a small interactive tool for understanding node lts versions</h2>
+      </header>
+      <div class="form-group">
+        <label for="version_input">version</label>
+        <input type="text" name="version_input" id="version_input" class="form-control" value=""/>
+      </div>
+      <div class="form-group">
+        <button id="submit_btn" class="btn btn-success form-control">submit</button>
+      </div>
+      <div id="results">
+      </div>
+    </div>
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="public/js/index.js"></script>
+  </body>
+</html>
