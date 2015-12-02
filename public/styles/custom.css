@@ -23,6 +23,10 @@ li {
   color: white;
 }
 
+.download {
+  background-color: #7aab13;
+}
+
 .btn:hover {
   background-color: black;
   color: white;
