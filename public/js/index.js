@@ -29,7 +29,7 @@ $(requestJSON(src_url, function(data) {
     return nums[0] + '.' + nums[1];
   }
 
-  $('a').click(function(e){
+  $('#versions a').click(function(e){
     e.preventDefault();
     var version_input = $(this).attr('id');
     var version_data = get_version_data(data, version_input);
@@ -74,9 +74,12 @@ $(requestJSON(src_url, function(data) {
   }
 
   function version_template(data) {
-    return  '<h2>' + data.version + '</h2>' +
+    return  '<h2>Node ' + data.version + '</h2>' +
             '<h2 id="lts"> LTS: ' + data.lts + '</h2>' +
-            '<h2 id="data"> Date Released: ' + data.date + '</h2>'
+            '<h3 id="data"> Date Released: ' + data.date + '</h3>' +
+            '<h3>npm v' + data.npm + `</h3>` +
+            '<a class="btn download" href="https://nodejs.org/download/release/' + 
+                data.version + '/">Download</a>'
   }
 
   function lts_template(element, lts) {
