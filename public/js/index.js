@@ -13,11 +13,15 @@ $(requestJSON(src_url, function(data) {
       major_minor = major_minor_new;
       version_list.append('<h3>' + major_minor + '</h3>');
     }    
-    var list_tmpl = ' * ' +
-                    '<a href="#" id="' + version + '">' +
-                    version +
-                    '</a>';
-    version_list.append(list_tmpl);
+    var line_item = line_item_tmpl(version);
+    version_list.append(line_item);
+    var line_i= $(version);
+    lts_template(line_i, data[i].lts);
+  }
+
+  function line_item_tmpl(vers) {
+    var list_tmpl = '<a href="#" id="' + version + '">' + version + '</a>';
+    return list_tmpl;
   }
 
   function get_major_minor(v_str) {
@@ -31,8 +35,9 @@ $(requestJSON(src_url, function(data) {
     var version_data = get_version_data(data, version_input);
     if (version_data) {
       var version_html = version_template(version_data);
+      results.removeClass('invisible');
       results.html(version_html);
-      lts_template(version_data.lts);
+      lts_template($('#lts'), version_data.lts);
     } else {
       results.text('version not found.');
     }
@@ -44,8 +49,9 @@ $(requestJSON(src_url, function(data) {
     var version_data = get_version_data(data, version_input);
     if (version_data) {
       var version_html = version_template(version_data);
+      results.removeClass('invisible');
       results.html(version_html);
-      lts_template(version_data.lts);
+      lts_template($('#lts'), version_data.lts);
     } else {
       results.text('version not found.');
     }
@@ -73,15 +79,25 @@ $(requestJSON(src_url, function(data) {
             '<h2 id="data"> Date Released: ' + data.date + '</h2>'
   }
 
-  function lts_template(lts) {
-    var lts_element = $('#lts');
+  function lts_template(element, lts) {
     if (lts) {
-      lts_element.addClass('text-info');
+      element.addClass('text-info');
     } else {
-      lts_element.addClass('text-danger');
+      element.addClass('text-danger');
     }
   }
  
+  $('#browse').click(function(e){
+    var vers_div = $('#versions');
+    var browse_btn = $('#browse');
+    e.preventDefault();
+    vers_div.toggleClass('invisible');
+    if (browse_btn.text() === 'Browse Node Versions') {
+      browse_btn.text('Hide Node Versions');
+    } else {
+      browse_btn.text('Browse Node Versions');
+    }
+  });
 }));
 
 function requestJSON(url, callback) {

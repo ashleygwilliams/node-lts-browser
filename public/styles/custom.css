@@ -1,3 +1,37 @@
+body {
+  background-color: #7aab13;
+  color: white;
+}
+
 li {
   float: left;
+}
+
+.invisible {
+  display: none;
+}
+
+#results {
+  padding: 20px;
+  background-color: white;
+  color: #333;
+  margin: 20px 0;
+}
+
+.btn {
+  background-color: #333;
+  color: white;
+}
+
+.btn:hover {
+  background-color: black;
+  color: white;
+}
+
+.btn:visited, .btn:active {
+  color: light-grey;
+}
+
+header {
+  text-align: center;
 }
